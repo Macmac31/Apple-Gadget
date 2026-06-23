@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iPhones — Apple Store</title>
+  <link rel="icon" href="images/applelogo.png" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<nav class="topnav" id="topnav">
+  <div class="topnav-logo">
+    <a href="index.html"><img src="images/applelogo.png" alt="Apple"></a>
+  </div>
+  <div class="topnav-links">
+    <a href="index.html" class="">Main Menu</a>
+    <a href="#" class="nav-iphones-trigger active" id="nav-iphones-btn">iPhones <span class="nav-chevron" id="nav-chevron">›</span></a>
+    <a href="collections.html" class="">Collections</a>
+    <a href="experiences.html" class="">Experiences</a>
+    <a href="about.html" class="">About Us</a>
+  </div>
+</nav>
+
+<!-- ════ FERRARI MEGA MENU ════ -->
+<div class="mega-menu" id="mega-menu">
+  <button class="mega-close" id="mega-close">✕</button>
+  <div class="mega-inner">
+    <!-- LEFT: category list -->
+    <div class="mega-left">
+      <p class="mega-eyebrow">iPHONES</p>
+      <ul class="mega-list" id="mega-list">
+        <li class="mega-item active" data-idx="0"><span class="mega-bar"></span>All Models <span class="mega-arrow">›</span></li>
+        <li class="mega-item" data-idx="1"><span class="mega-bar"></span>iPhone 17 Pro <span class="mega-arrow">›</span></li>
+        <li class="mega-item" data-idx="2"><span class="mega-bar"></span>iPhone Air <span class="mega-arrow">›</span></li>
+        <li class="mega-item" data-idx="3"><span class="mega-bar"></span>iPhone 17 <span class="mega-arrow">›</span></li>
+        <li class="mega-item" data-idx="4"><span class="mega-bar"></span>iPhone 17e <span class="mega-arrow">›</span></li>
+        <li class="mega-item" data-idx="5"><span class="mega-bar"></span>iPhone 16 Series <span class="mega-arrow">›</span></li>
+        <li class="mega-item" data-idx="6"><span class="mega-bar"></span>iPhone 15 Series <span class="mega-arrow">›</span></li>
+        <li class="mega-item" data-idx="7"><span class="mega-bar"></span>iPhone 14 Series <span class="mega-arrow">›</span></li>
+        <li class="mega-item" data-idx="8"><span class="mega-bar"></span>iPhone 13 Series <span class="mega-arrow">›</span></li>
+        <li class="mega-item" data-idx="9"><span class="mega-bar"></span>iPhone 12 Series <span class="mega-arrow">›</span></li>
+        <li class="mega-item" data-idx="10"><span class="mega-bar"></span>iPhone 11 Series <span class="mega-arrow">›</span></li>
+      </ul>
+      <div class="mega-left-bottom">
+        <a href="collections.html" class="mega-action-link">Compare all models ›</a>
+        <a href="collections.html" class="mega-action-link">Shop all iPhone ›</a>
+      </div>
+    </div>
+
+    <!-- CENTER: sub-model list -->
+    <div class="mega-center" id="mega-center"></div>
+
+    <!-- RIGHT: preview panel -->
+    <div class="mega-right" id="mega-right">
+      <div class="mega-preview-title" id="mega-preview-title"></div>
+      <div class="mega-preview-img-wrap">
+        <img id="mega-preview-img" src="" alt="">
+      </div>
+      <div class="mega-preview-tag" id="mega-preview-tag"></div>
+      <div class="mega-preview-price" id="mega-preview-price"></div>
+      <div class="mega-preview-btns">
+        <a href="collections.html" class="mega-btn-discover">DISCOVER MORE</a>
+        <div class="mega-btn-row">
+          <a href="collections.html">CONFIGURE</a>
+          <span>|</span>
+          <a href="collections.html">INQUIRE</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mega-overlay" id="mega-overlay"></div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     SECTION: GLOBAL NAV
+════════════════════════════════════════════════════════════ -->
+
+
+<audio id="bg-music" src="music/bgm.mp3" loop preload="auto"></audio>
+<button id="music-btn" onclick="toggleMusic()" title="Toggle music">🎵</button>
+
+<!-- ════════════════════════════════════════════════════════════
+     SECTION: IPHONES LANDING
+════════════════════════════════════════════════════════════ -->
+<div style="height:52px;"></div>
+<section class="placeholder-page" style="min-height:80vh;">
+  <p class="eyebrow">Every iPhone. Every color.</p>
+  <h1>iPhone</h1>
+  <p>Explore the full iPhone lineup — browse by series in the menu above, or view the full catalog.</p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:8px;">
+    <a class="promo-btn" href="collections.html" style="background:#2997ff;color:#fff;padding:12px 24px;border-radius:980px;font-size:15px;font-weight:500;">View full catalog ›</a>
+    <a class="promo-btn" href="#" id="open-mega-link" style="color:#f5f5f7;border:1px solid rgba(255,255,255,.2);padding:12px 24px;border-radius:980px;font-size:15px;font-weight:500;">Browse by series ›</a>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SECTION: PROMO BAND
+════════════════════════════════════════════════════════════ -->
+<div class="promo-band">
+  <h2>Ready for a new iPhone?</h2>
+  <p>Choose the model that's right for you. We'll help you every step of the way.</p>
+  <a class="promo-btn" href="collections.html">Explore the lineup ›</a>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     SECTION: FOOTER
+════════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════════════
+     SECTION: SOCIAL MEDIA FOOTER
+════════════════════════════════════════════════════════════ -->
+<div class="footer-social">
+  <div class="footer-social-inner">
+    <!-- Row 1: 4 socials -->
+    <div class="footer-social-grid">
+      <a class="footer-social-item" href="https://www.facebook.com/trustmac.sec" target="_blank" rel="noopener">
+        <!-- Facebook icon -->
+        <svg class="soc-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99C18.34 21.12 22 17 22 12z"/></svg>
+        <span class="soc-name">Facebook</span>
+        <span class="soc-plus">+</span>
+      </a>
+      <a class="footer-social-item" href="#" target="_blank" rel="noopener">
+        <!-- Instagram icon -->
+        <svg class="soc-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.756 0 8.332.014 7.052.072 5.197.157 3.355.673 2.014 2.014.673 3.355.157 5.197.072 7.052.014 8.332 0 8.756 0 12c0 3.244.014 3.668.072 4.948.085 1.855.601 3.697 1.942 5.038 1.341 1.341 3.183 1.857 5.038 1.942C8.332 23.986 8.756 24 12 24s3.668-.014 4.948-.072c1.855-.085 3.697-.601 5.038-1.942 1.341-1.341 1.857-3.183 1.942-5.038.058-1.28.072-1.704.072-4.948 0-3.244-.014-3.668-.072-4.948-.085-1.855-.601-3.697-1.942-5.038C20.645.673 18.803.157 16.948.072 15.668.014 15.244 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        <span class="soc-name">Instagram</span>
+        <span class="soc-plus">+</span>
+      </a>
+      <a class="footer-social-item" href="#" target="_blank" rel="noopener">
+        <!-- LinkedIn icon -->
+        <svg class="soc-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <span class="soc-name">LinkedIn</span>
+        <span class="soc-plus">+</span>
+      </a>
+      <a class="footer-social-item" href="#" target="_blank" rel="noopener">
+        <!-- TikTok icon -->
+        <svg class="soc-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+        <span class="soc-name">Tik Tok</span>
+        <span class="soc-plus">+</span>
+      </a>
+    </div>
+    <!-- Row 2: 3 socials -->
+    <div class="footer-social-grid-row2">
+      <a class="footer-social-item" href="#" target="_blank" rel="noopener">
+        <!-- Twitch icon -->
+        <svg class="soc-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
+        <span class="soc-name">Twitch</span>
+        <span class="soc-plus">+</span>
+      </a>
+      <a class="footer-social-item" href="#" target="_blank" rel="noopener">
+        <!-- X / Twitter icon -->
+        <svg class="soc-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L2.166 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        <span class="soc-name">X</span>
+        <span class="soc-plus">+</span>
+      </a>
+      <a class="footer-social-item" href="#" target="_blank" rel="noopener">
+        <!-- YouTube icon -->
+        <svg class="soc-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        <span class="soc-name">YouTube</span>
+        <span class="soc-plus">+</span>
+      </a>
+    </div>
+    <!-- Apple logo branding -->
+    <div class="footer-social-brand">
+      <img src="images/applelogo.png" alt="Apple">
+      <span>Apple Store &nbsp;·&nbsp; All rights reserved</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Shop and Learn</h4>
+        <a href="#">Store</a><a href="#">Mac</a><a href="#">iPad</a><a href="iphones.html">iPhone</a><a href="#">Watch</a><a href="#">AirPods</a><a href="#">Accessories</a>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <a href="#">Manage Your Apple ID</a><a href="#">Apple Store Account</a><a href="#">iCloud.com</a>
+      </div>
+      <div class="footer-col">
+        <h4>Apple Store</h4>
+        <a href="#">Find a Store</a><a href="#">Genius Bar</a><a href="#">Today at Apple</a><a href="#">Apple Trade In</a><a href="#">Order Status</a>
+      </div>
+      <div class="footer-col">
+        <h4>For Business</h4>
+        <a href="#">Apple and Business</a><a href="#">Shop for Business</a><a href="#">For Education</a><a href="#">Apple in Healthcare</a>
+      </div>
+    </div>
+    <hr>
+    <div class="footer-bottom">
+      <span>Copyright &copy; 2025 Apple Inc. All rights reserved.</span>
+      <span>Privacy Policy &nbsp;|&nbsp; Terms of Use &nbsp;|&nbsp; Sales and Refunds</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════
+     SECTION: LIGHTBOX
+════════════════════════════════════════════════════════════ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="close" onclick="closeLightbox(event)">✕</button>
+  <img id="lb-img" src="" alt="">
+  <div class="caption" id="lb-cap"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
