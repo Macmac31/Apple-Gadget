@@ -233,14 +233,39 @@ function closeLightbox(e) {
 // SCROLL-TRIGGERED FADE-IN
 // ════════════════════════════════════════════════════════════
 function initScrollFadeIn() {
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if(e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } });
+  // ── Legacy elements (catalog cards, feature items) ──
+  const legacyIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        legacyIO.unobserve(e.target);
+      }
+    });
   }, { threshold: 0.08 });
 
   document.querySelectorAll('.feature-item, .model-group').forEach(el => {
-    el.style.opacity = '0'; el.style.transform = 'translateY(28px)';
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
     el.style.transition = 'opacity .55s ease, transform .55s ease';
-    io.observe(el);
+    legacyIO.observe(el);
+  });
+
+  // ── Unfold-style [data-uf] elements ──
+  const ufIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const delay = parseInt(e.target.dataset.delay || 0);
+        setTimeout(() => {
+          e.target.classList.add('uf-visible');
+        }, delay);
+        ufIO.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('[data-uf]').forEach(el => {
+    ufIO.observe(el);
   });
 }
 
@@ -317,7 +342,9 @@ function toggleMusic() {
 function initMusicAutoStart() {
   const bgMusic = document.getElementById('bg-music');
   const musicBtn = document.getElementById('music-btn');
-  document.getElementById('intro-splash').addEventListener('transitionend', () => {
+  const splash = document.getElementById('intro-splash');
+  if (!splash) return;
+  splash.addEventListener('transitionend', () => {
     if (document.getElementById('intro-splash').classList.contains('fade-out')) {
       bgMusic.volume = 0;
       bgMusic.play().then(() => {
@@ -425,6 +452,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initSiteProtection();
   initMegaMenu();
+
+  // Fire [data-uf] elements already in viewport on load (e.g. hero panel)
+  setTimeout(() => {
+    document.querySelectorAll('[data-uf]').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const delay = parseInt(el.dataset.delay || 0);
+        setTimeout(() => el.classList.add('uf-visible'), delay + 200);
+      }
+    });
+  }, 800); // after splash starts fading
 
   const lightbox = document.getElementById('lightbox');
   if (lightbox) {

@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>iPhone — Apple Store</title>
-  <link rel="icon" href="images/applelogo.png" type="image/x-icon">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -99,58 +101,87 @@
 
 
 <!-- ════════════════════════════════════════════════════════════
-     SECTION: HERO
+     SECTION: CINEMATIC SCROLL STORY (Unfold-style)
 ════════════════════════════════════════════════════════════ -->
 <audio id="bg-music" src="music/bgm.mp3" loop preload="auto"></audio>
 <button id="music-btn" onclick="toggleMusic()" title="Toggle music">🎵</button>
 
-<section class="hero">
-  <video class="hero-bg-video" src="videos/intro.mp4" autoplay muted loop playsinline></video>
-  <p class="hero-eyebrow">iPhone 17 Pro</p>
-  <h1 class="hero-title">Hello, Pro.</h1>
-  <p class="hero-sub">Titanium. A18 Pro chip. Camera Control. The most capable iPhone ever made.</p>
-  <div class="hero-ctas">
-    <a class="hero-btn filled" href="collections.html">Learn more</a>
-    <a class="hero-btn ghost" href="collections.html">Buy ›</a>
+<!-- PANEL 1: Hero — video bg, massive title reveal -->
+<section class="uf-panel uf-panel--hero" id="uf-hero">
+  <video class="uf-video" src="videos/intro.mp4" autoplay muted loop playsinline></video>
+  <div class="uf-overlay"></div>
+  <div class="uf-hero-content">
+    <p class="uf-eyebrow" data-uf>iPhone 17 Pro</p>
+    <div class="uf-hero-title-wrap">
+      <span class="uf-word" data-uf data-delay="0">Hello,</span>
+      <span class="uf-word uf-word--accent" data-uf data-delay="120">Pro.</span>
+    </div>
+    <p class="uf-hero-sub" data-uf data-delay="240">Titanium. A18 Pro chip. Camera Control.<br>The most capable iPhone ever made.</p>
+    <div class="uf-hero-ctas" data-uf data-delay="360">
+      <a class="uf-btn uf-btn--fill" href="collections.html">Learn more</a>
+      <a class="uf-btn uf-btn--ghost" href="collections.html">Buy ›</a>
+    </div>
   </div>
-  <div class="hero-scroll">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 5v14M5 12l7 7 7-7"/>
-    </svg>
+  <div class="uf-scroll-hint">
+    <span>Scroll</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════════════
-     SECTION: FEATURE BAND
-════════════════════════════════════════════════════════════ -->
-<div class="feature-band">
-  <div class="feature-band-inner">
-    <div class="feature-item">
-      <span class="feature-icon">&#128246;</span>
-      <div class="feature-title">Trade In &amp; Save</div>
-      <p class="feature-desc">Get credit toward your next iPhone when you trade in any model — in any condition.</p>
+<!-- PANEL 2: Statement — left-aligned, huge text slides from left -->
+<section class="uf-panel uf-panel--statement" id="uf-s2">
+  <div class="uf-statement-inner">
+    <p class="uf-label" data-uf data-dir="left">The future</p>
+    <h2 class="uf-statement-title">
+      <span class="uf-line" data-uf data-dir="left" data-delay="0">Designed to</span>
+      <span class="uf-line" data-uf data-dir="right" data-delay="80">stand out.</span>
+    </h2>
+    <p class="uf-statement-sub" data-uf data-dir="left" data-delay="160">Every curve. Every pixel. Every detail — crafted for those who demand the extraordinary.</p>
+    <a class="uf-text-link" href="collections.html" data-uf data-delay="240">Explore the lineup ›</a>
+  </div>
+  <div class="uf-statement-img" data-uf data-dir="right">
+    <img src="images/iphone17pro_cosmic_orange.png" alt="iPhone 17 Pro">
+  </div>
+</section>
+
+<!-- PANEL 3: Feature trio — staggered cards slide up -->
+<section class="uf-panel uf-panel--features" id="uf-s3">
+  <div class="uf-features-header">
+    <p class="uf-label" data-uf>Why Apple Store</p>
+    <h2 class="uf-features-title" data-uf data-delay="60">Everything you need,<br>in one place.</h2>
+  </div>
+  <div class="uf-features-grid">
+    <div class="uf-feat-card" data-uf data-delay="0">
+      <div class="uf-feat-icon">📱</div>
+      <h3>Trade In &amp; Save</h3>
+      <p>Get credit toward your next iPhone when you trade in any model — in any condition.</p>
     </div>
-    <div class="feature-item">
-      <span class="feature-icon">&#128666;</span>
-      <div class="feature-title">Free Delivery</div>
-      <p class="feature-desc">Order online and get your new iPhone delivered to your door — free, fast, and easy.</p>
+    <div class="uf-feat-card" data-uf data-delay="100">
+      <div class="uf-feat-icon">🚀</div>
+      <h3>Free Delivery</h3>
+      <p>Order online and get your new iPhone delivered to your door — free, fast, and easy.</p>
     </div>
-    <div class="feature-item">
-      <span class="feature-icon">&#128100;</span>
-      <div class="feature-title">Specialist Help</div>
-      <p class="feature-desc">Chat or call with an Apple Specialist to find the perfect iPhone for you.</p>
+    <div class="uf-feat-card" data-uf data-delay="200">
+      <div class="uf-feat-icon">👤</div>
+      <h3>Specialist Help</h3>
+      <p>Chat or call with an Apple Specialist to find the perfect iPhone for you.</p>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ════════════════════════════════════════════════════════════
-     SECTION: PROMO BAND
-════════════════════════════════════════════════════════════ -->
-<div class="promo-band">
-  <h2>Ready for a new iPhone?</h2>
-  <p>Choose the model that's right for you. We'll help you every step of the way.</p>
-  <a class="promo-btn" href="iphones.html">Shop all iPhone models ›</a>
-</div>
+<!-- PANEL 4: Full-screen CTA — text builds word by word -->
+<section class="uf-panel uf-panel--cta" id="uf-s4">
+  <div class="uf-cta-inner">
+    <p class="uf-label" data-uf>Ready?</p>
+    <h2 class="uf-cta-title">
+      <span class="uf-word" data-uf data-delay="0">Find</span>
+      <span class="uf-word" data-uf data-delay="80">your</span>
+      <span class="uf-word uf-word--accent" data-uf data-delay="160">iPhone.</span>
+    </h2>
+    <p class="uf-cta-sub" data-uf data-delay="260">Every model. Every color. Every price point.</p>
+    <a class="uf-btn uf-btn--fill uf-btn--large" href="collections.html" data-uf data-delay="340">Shop all iPhone models ›</a>
+  </div>
+</section>
 
 <!-- ════════════════════════════════════════════════════════════
      SECTION: FOOTER
