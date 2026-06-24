@@ -590,10 +590,21 @@ function renderMegaModel(catIdx, modelIdx) {
   document.getElementById('mega-preview-tag').textContent = m.tag;
   document.getElementById('mega-preview-price').textContent = m.price;
 
+  // Resolve correct image: prefer megaData img, but cross-check catalogGroups
+  let resolvedImg = m.img;
+  if (typeof catalogGroups !== 'undefined') {
+    const slug = m.name.toLowerCase().replace(/\s+/g,'').replace(/[^a-z0-9]/g,'');
+    const cat = catalogGroups.find(g => {
+      const ns = g.name.toLowerCase().replace(/\s+/g,'').replace(/[^a-z0-9]/g,'');
+      return ns === slug;
+    });
+    if (cat && cat.variants[0]) resolvedImg = cat.variants[0].f;
+  }
+
   const img = document.getElementById('mega-preview-img');
   img.classList.add('fade');
   setTimeout(() => {
-    img.src = 'images/' + m.img;
+    img.src = 'images/' + resolvedImg;
     img.onload = () => img.classList.remove('fade');
     if (img.complete) img.classList.remove('fade');
   }, 180);
