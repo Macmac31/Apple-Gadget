@@ -325,23 +325,33 @@ function initSplash() {
 // ════════════════════════════════════════════════════════════
 let musicPlaying = false;
 
+function setMusicUI(playing) {
+  const btn = document.getElementById('music-btn');
+  const eq = document.getElementById('music-eq');
+  const toggleInput = document.getElementById('music-toggle-input');
+  if (!btn) return;
+  const playIcon = btn.querySelector('.mp-icon-play');
+  const pauseIcon = btn.querySelector('.mp-icon-pause');
+  if (playIcon)  playIcon.style.display  = playing ? 'none' : '';
+  if (pauseIcon) pauseIcon.style.display = playing ? '' : 'none';
+  if (eq) eq.classList.toggle('playing', playing);
+  if (toggleInput) toggleInput.checked = playing;
+}
+
 function toggleMusic() {
   const bgMusic = document.getElementById('bg-music');
-  const musicBtn = document.getElementById('music-btn');
   if (musicPlaying) {
     bgMusic.pause();
-    musicBtn.textContent = '🔇';
     musicPlaying = false;
   } else {
     bgMusic.play().catch(()=>{});
-    musicBtn.textContent = '🎵';
     musicPlaying = true;
   }
+  setMusicUI(musicPlaying);
 }
 
 function initMusicAutoStart() {
   const bgMusic = document.getElementById('bg-music');
-  const musicBtn = document.getElementById('music-btn');
   const splash = document.getElementById('intro-splash');
   if (!splash) return;
   splash.addEventListener('transitionend', () => {
@@ -349,7 +359,7 @@ function initMusicAutoStart() {
       bgMusic.volume = 0;
       bgMusic.play().then(() => {
         musicPlaying = true;
-        musicBtn.textContent = '🎵';
+        setMusicUI(true);
         // Fade music in gradually
         let vol = 0;
         const fadeIn = setInterval(() => {

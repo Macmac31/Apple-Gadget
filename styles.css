@@ -186,18 +186,83 @@ a { color: inherit; text-decoration: none; }
 }
 .hero > *:not(.hero-bg-video) { position: relative; z-index: 2; }
 
-/* music toggle */
-#music-btn {
-  position: fixed; bottom: 28px; left: 28px; z-index: 1100;
-  width: 42px; height: 42px; border-radius: 50%;
-  background: rgba(255,255,255,.1);
-  border: 1px solid rgba(255,255,255,.18);
-  color: #fff; font-size: 17px;
+/* music player widget */
+.music-player {
+  position: fixed; bottom: 28px; right: 28px; z-index: 1100;
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(20,20,22,.88);
+  border: 1px solid rgba(255,255,255,.08);
+  border-left: 3px solid #e0263f;
+  border-radius: 14px;
+  padding: 9px 16px 9px 10px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.45);
+  max-width: 300px;
+}
+.music-player__btn {
+  flex-shrink: 0;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: #e0263f; border: none; color: #fff;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; transition: background .2s, transform .15s;
-  backdrop-filter: blur(10px);
 }
-#music-btn:hover { background: rgba(255,255,255,.18); transform: scale(1.08); }
+.music-player__btn:hover { background: #f5324c; transform: scale(1.06); }
+.music-player__btn svg { width: 15px; height: 15px; }
+.music-player__info { min-width: 0; }
+.music-player__label {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: #ff4d63; margin-bottom: 2px;
+}
+.music-player__label::before {
+  content: ''; width: 5px; height: 5px; border-radius: 50%;
+  background: #ff4d63; flex-shrink: 0;
+  box-shadow: 0 0 6px #ff4d63;
+}
+.music-player__title {
+  font-size: 14px; font-weight: 700; color: #fff;
+  letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.music-player__sub {
+  font-size: 11px; color: rgba(245,245,247,.4);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.music-player__eq {
+  flex-shrink: 0; display: flex; align-items: flex-end; gap: 2px; height: 16px;
+}
+.music-player__eq span {
+  width: 2.5px; border-radius: 2px; background: #e0263f;
+  height: 4px; transition: opacity .2s;
+}
+.music-player__eq.playing span { animation: mpEq 1s ease-in-out infinite; }
+.music-player__eq:not(.playing) span { opacity: .35; }
+.music-player__eq span:nth-child(1) { animation-delay: -.9s; }
+.music-player__eq span:nth-child(2) { animation-delay: -.6s; }
+.music-player__eq span:nth-child(3) { animation-delay: -.3s; }
+.music-player__eq span:nth-child(4) { animation-delay: 0s; }
+@keyframes mpEq {
+  0%, 100% { height: 4px; }
+  50% { height: 15px; }
+}
+.music-player__toggle { flex-shrink: 0; cursor: pointer; }
+.music-player__toggle input { display: none; }
+.music-player__toggle-track {
+  display: block; width: 34px; height: 18px; border-radius: 999px;
+  background: rgba(255,255,255,.15); position: relative; transition: background .2s;
+}
+.music-player__toggle input:checked + .music-player__toggle-track { background: #e0263f; }
+.music-player__toggle-thumb {
+  position: absolute; top: 2px; left: 2px;
+  width: 14px; height: 14px; border-radius: 50%; background: #fff;
+  transition: transform .2s;
+}
+.music-player__toggle input:checked + .music-player__toggle-track .music-player__toggle-thumb {
+  transform: translateX(16px);
+}
+@media (max-width: 430px) {
+  .music-player { right: 16px; bottom: max(16px, env(safe-area-inset-bottom)); max-width: calc(100vw - 32px); }
+  .music-player__sub { display: none; }
+}
 
 .hero-eyebrow {
   font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
@@ -1166,9 +1231,9 @@ footer hr { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 0
 footer, .footer-social {
   padding-bottom: max(28px, env(safe-area-inset-bottom));
 }
-#music-btn {
+.music-player {
   bottom: max(28px, env(safe-area-inset-bottom));
-  left: max(28px, env(safe-area-inset-left));
+  right: max(28px, env(safe-area-inset-right));
 }
 
 /* Improve touch targets — minimum 44px hit area */

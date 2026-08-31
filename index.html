@@ -105,7 +105,24 @@
      SECTION: CINEMATIC SCROLL STORY (Unfold-style)
 ════════════════════════════════════════════════════════════ -->
 <audio id="bg-music" src="music/bgm.mp3" loop preload="auto"></audio>
-<button id="music-btn" onclick="toggleMusic()" title="Toggle music">🎵</button>
+<div class="music-player">
+  <button class="music-player__btn" id="music-btn" onclick="toggleMusic()" aria-label="Toggle music">
+    <svg class="mp-icon-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+    <svg class="mp-icon-play" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M8 5v14l11-7z"/></svg>
+  </button>
+  <div class="music-player__info">
+    <div class="music-player__label">FIFA Sound</div>
+    <div class="music-player__title">Lighter</div>
+    <div class="music-player__sub">Apple Gadget · Macmac Cosme</div>
+  </div>
+  <div class="music-player__eq" id="music-eq">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <label class="music-player__toggle">
+    <input type="checkbox" id="music-toggle-input" onchange="toggleMusic()">
+    <span class="music-player__toggle-track"><span class="music-player__toggle-thumb"></span></span>
+  </label>
+</div>
 
 <!-- PANEL 1: Hero — video bg, massive title reveal -->
 <section class="uf-panel uf-panel--hero" id="uf-hero">
