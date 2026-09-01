@@ -284,3 +284,57 @@
   .mp-btn { width: 100%; justify-content: center; }
   .mp-spec-chip-value { font-size: 14px; }
 }
+/* ── MODEL PAGE MUSIC PLAYER (Video Audio Control) ── */
+.model-music-player {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(20,20,22,.88);
+  border: 1px solid rgba(255,255,255,.08);
+  border-left: 3px solid #2997ff;
+  border-radius: 14px;
+  padding: 9px 16px 9px 10px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.45);
+  max-width: 300px;
+}
+
+.model-music-player .music-player__btn {
+  background: #2997ff;
+}
+
+.model-music-player .music-player__btn:hover {
+  background: #40a0ff;
+}
+
+.model-music-player .music-player__label {
+  color: #5eb4ff;
+}
+
+.model-music-player .music-player__label::before {
+  background: #2997ff;
+  box-shadow: 0 0 6px #2997ff;
+}
+
+.model-music-player .music-player__eq span {
+  background: #2997ff;
+}
+
+.model-music-player .music-player__toggle input:checked + .music-player__toggle-track {
+  background: #2997ff;
+}
+
+@media (max-width: 430px) {
+  .model-music-player {
+    right: 16px;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    max-width: calc(100vw - 32px);
+  }
+  .model-music-player .music-player__sub {
+    display: none;
+  }
+}

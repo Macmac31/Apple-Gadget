@@ -72,8 +72,28 @@
 </div>
 <div class="mega-overlay" id="mega-overlay"></div>
 
+<!-- BACKGROUND MUSIC -->
 <audio id="bg-music" src="music/bgm.mp3" loop preload="auto"></audio>
-<button id="music-btn" onclick="toggleMusic()" title="Toggle music">🎵</button>
+
+<!-- VIDEO AUDIO TOGGLE BUTTON (similar to home page music player) -->
+<div class="music-player model-music-player" id="model-music-player">
+  <button class="music-player__btn" id="model-music-btn" onclick="toggleModelVideoAudio()" aria-label="Toggle video audio">
+    <svg class="mp-icon-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+    <svg class="mp-icon-play" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M8 5v14l11-7z"/></svg>
+  </button>
+  <div class="music-player__info">
+    <div class="music-player__label">VIDEO AUDIO</div>
+    <div class="music-player__title" id="model-video-title">Trailer Sound</div>
+    <div class="music-player__sub" id="model-video-sub">Tap to toggle audio</div>
+  </div>
+  <div class="music-player__eq" id="model-music-eq">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <label class="music-player__toggle">
+    <input type="checkbox" id="model-music-toggle-input" onchange="toggleModelVideoAudio()">
+    <span class="music-player__toggle-track"><span class="music-player__toggle-thumb"></span></span>
+  </label>
+</div>
 
 <!-- ══════════════════════════════════════════════════════════
      MODEL PAGE BODY — rendered by model.js
@@ -184,5 +204,82 @@
 
 <script src="script.js"></script>
 <script src="model.js"></script>
+
+<script>
+// ════════════════════════════════════════════════════════════
+// MODEL PAGE VIDEO AUDIO CONTROL
+// ════════════════════════════════════════════════════════════
+let modelVideoAudioActive = false;
+let modelVideoElement = null;
+
+function toggleModelVideoAudio() {
+  const video = document.querySelector('.mp-hero-video');
+  const btn = document.getElementById('model-music-btn');
+  const eq = document.getElementById('model-music-eq');
+  const toggleInput = document.getElementById('model-music-toggle-input');
+  
+  if (!video) return;
+  
+  modelVideoAudioActive = !modelVideoAudioActive;
+  
+  if (modelVideoAudioActive) {
+    video.muted = false;
+    video.volume = 0.5;
+    video.play().catch(() => {});
+    // Update UI
+    const playIcon = btn.querySelector('.mp-icon-play');
+    const pauseIcon = btn.querySelector('.mp-icon-pause');
+    if (playIcon) playIcon.style.display = 'none';
+    if (pauseIcon) pauseIcon.style.display = '';
+    if (eq) eq.classList.add('playing');
+    if (toggleInput) toggleInput.checked = true;
+  } else {
+    video.muted = true;
+    // Update UI
+    const playIcon = btn.querySelector('.mp-icon-play');
+    const pauseIcon = btn.querySelector('.mp-icon-pause');
+    if (playIcon) playIcon.style.display = '';
+    if (pauseIcon) pauseIcon.style.display = 'none';
+    if (eq) eq.classList.remove('playing');
+    if (toggleInput) toggleInput.checked = false;
+  }
+}
+
+// Find the hero video and set up the audio toggle
+function setupModelAudioControl() {
+  const video = document.querySelector('.mp-hero-video');
+  if (video) {
+    modelVideoElement = video;
+    video.muted = true; // Start muted by default
+    
+    // Update video title based on model name
+    const titleEl = document.getElementById('model-video-title');
+    const modelName = document.title.replace(' — Apple Store', '');
+    if (titleEl && modelName) {
+      titleEl.textContent = modelName + ' Trailer';
+    }
+    
+    // Update subtitle
+    const subEl = document.getElementById('model-video-sub');
+    if (subEl) {
+      subEl.textContent = 'Tap to toggle audio';
+    }
+  }
+}
+
+// Run after page loads
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(setupModelAudioControl, 500);
+});
+
+// Also observe for video element changes (since it's added dynamically)
+const observer = new MutationObserver(function() {
+  const video = document.querySelector('.mp-hero-video');
+  if (video && !modelVideoElement) {
+    setupModelAudioControl();
+  }
+});
+observer.observe(document.body, { childList: true, subtree: true });
+</script>
 </body>
 </html>
