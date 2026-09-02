@@ -518,7 +518,7 @@ function getFallbackModel(slug) {
 // ════════════════════════════════════════════════════════════
 // VIDEO AUDIO CONTROL
 // ════════════════════════════════════════════════════════════
-let modelVideoAudioActive = false;
+let modelVideoAudioActive = true; // Audio ON by default
 let modelVideoElement = null;
 
 function toggleModelVideoAudio() {
@@ -579,8 +579,22 @@ function setupModelAudioControl(modelName) {
   const video = document.querySelector('.mp-hero-video');
   if (video) {
     modelVideoElement = video;
-    video.muted = true; // Start muted by default
-    modelVideoAudioActive = false;
+    
+    // Start with audio ON (not muted)
+    video.muted = false;
+    video.volume = 0.5;
+    modelVideoAudioActive = true;
+    
+    // Ensure video plays with audio
+    video.play().catch(function(e) {
+      // If autoplay is blocked, try again with user interaction
+      console.log('Autoplay blocked, waiting for user interaction');
+      // Add a one-time click handler to play
+      document.addEventListener('click', function playOnClick() {
+        video.play().catch(function() {});
+        document.removeEventListener('click', playOnClick);
+      }, { once: true });
+    });
     
     // Update video title based on model name
     const titleEl = document.getElementById('model-video-title');
@@ -591,10 +605,10 @@ function setupModelAudioControl(modelName) {
     // Update subtitle
     const subEl = document.getElementById('model-video-sub');
     if (subEl) {
-      subEl.textContent = 'Tap to toggle audio';
+      subEl.textContent = 'Audio ON';
     }
     
-    // Reset UI to muted state
+    // Set UI to active/ON state
     const btn = document.getElementById('model-music-btn');
     const eq = document.getElementById('model-music-eq');
     const toggleInput = document.getElementById('model-music-toggle-input');
@@ -602,11 +616,11 @@ function setupModelAudioControl(modelName) {
     if (btn) {
       const playIcon = btn.querySelector('.mp-icon-play');
       const pauseIcon = btn.querySelector('.mp-icon-pause');
-      if (playIcon) playIcon.style.display = '';
-      if (pauseIcon) pauseIcon.style.display = 'none';
+      if (playIcon) playIcon.style.display = 'none';
+      if (pauseIcon) pauseIcon.style.display = '';
     }
-    if (eq) eq.classList.remove('playing');
-    if (toggleInput) toggleInput.checked = false;
+    if (eq) eq.classList.add('playing');
+    if (toggleInput) toggleInput.checked = true;
   }
 }
 
@@ -643,7 +657,7 @@ function initModelPage() {
     `;
     
     videoWrapper.innerHTML = `
-      <video class="mp-hero-video" autoplay muted loop playsinline preload="metadata" style="
+      <video class="mp-hero-video" autoplay loop playsinline preload="metadata" style="
         position: absolute;
         inset: 0;
         width: 100%;
